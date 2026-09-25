@@ -692,6 +692,8 @@ def compute_attn_eig_prod(attentions, layer_num=20, tok_lens=[], use_toklens=Tru
     layer_num = attentions.shape[0]
     layer_results = []
     for layer in range(layer_num):
+        # !!! uncomment below for original score. We found that this score performs better or similar.
+        # eigscore = torch.tensor(0.0, device=attentions.device)
         for attn_head_num in range(len(attentions[layer])):  # iterating over number of attn heads
             # attns[i][layer_num][j] is of size seq_len x seq_len
             Sigma = attentions[layer][attn_head_num]
