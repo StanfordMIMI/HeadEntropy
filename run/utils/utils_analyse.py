@@ -420,6 +420,8 @@ def get_attn_score(data, skip_idxs=None):
     layer_idx = int(layer_len * 0.8) 
     for item in tqdm(data):
         try:
+            # uncomment next line and comment out 425, for the original score. Performs worse or similar to the score we used. 
+            # attn_scores.append(torch.tensor(item["attn_eig_prod"])[layer_idx] - torch.tensor(item["attn_eig_prod"])[layer_idx - 1])
             attn_scores.append(torch.tensor(item["attn_eig_prod"])[layer_idx])
         except:
             attn_scores.append(torch.tensor(0))
